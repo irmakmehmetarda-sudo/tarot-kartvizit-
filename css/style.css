@@ -120,3 +120,46 @@ button:focus-visible,a:focus-visible { outline:2px solid #d4bba0; outline-offset
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { transition-duration:.01ms !important; animation-duration:.01ms !important; }
 }
+/* AZIZE - KEHANET ISIKLARI */
+.tarot-wrap {
+  isolation: isolate;
+}
+
+.tarot-wrap::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 155%;
+  aspect-ratio: 1;
+  left: 50%;
+  top: 43%;
+  transform: translate(-50%, -50%) scale(.72);
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    transparent 0deg 10deg,
+    rgba(220, 184, 139, .3) 11deg 12deg,
+    transparent 13deg 22deg
+  );
+}
+
+.tarot-wrap.is-revealing::before {
+  animation: oracle-rays 1.5s ease-out both;
+}
+
+.tarot-wrap.is-revealing .tarot-card {
+  filter: drop-shadow(0 0 18px rgba(220, 184, 139, .8));
+}
+
+@keyframes oracle-rays {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.55) rotate(-18deg);
+  }
+  35% { opacity: .9; }
+  100% {
+    opacity: .22;
+    transform: translate(-50%, -50%) scale(1.08) rotate(12deg);
+  }
+}
